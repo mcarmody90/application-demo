@@ -25,16 +25,6 @@
   }
 }
 
-.list-item--message {
-  align-items: center;
-  color: $grey;
-  justify-content: center;
-  padding: $m-size;
-  &:hover {
-    background: none;
-  }
-}
-
 .module__title {
   margin: 0;
   word-break: break-all;
@@ -43,14 +33,6 @@
 .module__sub-title {
   color: $grey;
   font-size: $font-size-small;
-}
-
-.module__title__data {
-  margin: $s-size 0 0 0;
-  @media (min-width: $desktop-breakpoint) {
-    margin: 0;
-    padding-left: $s-size;
-  }
 }
 
 .module-list {

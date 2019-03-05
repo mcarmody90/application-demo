@@ -33,11 +33,9 @@ export class Module extends React.Component {
     if( (this.props[0].moduleComplete[this.props.number - 1] + 604800000) >= Number( moment() ) || this.props.number === 1) {
       return (
         <div className='content-container'>
-          <Link to={`/module/${this.props.id}`}>
-            <div className='module'>
-              <h1 className='module__title'>Module {this.props.number}</h1>
-              <p className='module__subtitle'>The time is {this.state.time}.</p>
-            </div>
+          <Link className='module' to={`/module/${this.props.id}`}>
+            <h1 className='module__title'>Module {this.props.number}</h1>
+            <p className='module__subtitle'>The time is {this.state.time}.</p>
           </Link>
         </div>
       );
@@ -45,8 +43,8 @@ export class Module extends React.Component {
       return (
         <div className='content-container'>
           <div className='module module__inactive'>
-            <h1>Module {this.props.number}</h1>
-            <p>This module is locked.{this.state.unlock}</p>
+            <h1 className='module__title'>Module {this.props.number}</h1>
+            <p className='module__subtitle'>This module is locked.{this.state.unlock}</p>
           </div>
         </div>
       );
