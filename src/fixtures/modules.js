@@ -6,7 +6,7 @@ export default [
     video: undefined,
     description: undefined,
     survey: undefined,
-    unlockTime: 1551647002461
+    unlockTime: 1551821772
   },
   {
     name: 'Module Two',
