@@ -1,0 +1,23 @@
+.button {
+  background-color: $light-blue;
+  border: none;
+  color: #fff;
+  display: inline-block;
+  font-size: $font-size-large;
+  font-weight: 300;
+  line-height: 1;
+  padding: $s-size;
+  text-decoration: none;
+  
+  @media(max-width: $desktop-breakpoint) {
+    width: 100%;
+  }
+}
+
+.button--link {
+  background: none;
+}
+
+.button--secondary {
+  background: #888;
+}
