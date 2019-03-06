@@ -1,11 +1,20 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import uuid from 'uuid';
 import moment from 'moment';
 import ModuleViewPage from './ModuleViewPage';
+import { firebase } from '../firebase/firebase';
+import database from '../firebase/firebase';
 
 export class Module extends React.Component {
   constructor(props) {
     super(props);
+    // firebase.auth().onAuthStateChanged((user) => {
+    //   if (user) {
+    //     console.log(user.uid);
+    //   }
+    // });
+    //database.ref()
     this.state = {
       unlock: Math.trunc((props[0].moduleComplete[props.number - 1] + 604800) - (Number(moment() / 1000)))
     };

@@ -21,6 +21,29 @@ export const startCompleteModule = (moduleNumber = undefined) => {
   };
 };
 
+export const setModules = (modules) => ({
+  type: 'SET_MODULES',
+  modules
+});
+
+export const startSetModules = () => {
+  return (dispatch, getState) => {
+    const uid = getState().auth.uid;
+    return database.ref(`users/${uid}/modules`).once('value').then((snapshot) => {
+      const modules = [];
+      
+      snapshot.forEach((childSnapshot) => {
+        modules.push({
+          number: childSnapshot.key,
+          ...childSnapshot.val()
+        });
+      });
+      
+      dispatch(setModules(modules));
+    });
+  };
+};
+
 // export const startCompleteModule = (moduleNumber = undefined) => {
 //   console.log('moduleNumber: ', moduleNumber);
 //   return (dispatch, getState) => {
