@@ -16,9 +16,9 @@ export class Module extends React.Component {
     // console.log('current module number: ', Number(this.props.number));
     // console.log('previous module number: ', previousModuleNumber);
     // console.log('current module unlockTime: ', this.props.modules[Number(this.props.number) - 1].moduleComplete);
-    console.log('previousModuleUnlockTime: ', previousModuleUnlockTime);
-    console.log('currentTime: ', (Number(moment()) / 1000));
-    console.log('previousModuleUnlockTime - currentTime: ', previousModuleUnlockTime - (Number(moment()) / 1000));
+    // console.log('previousModuleUnlockTime: ', previousModuleUnlockTime);
+    // console.log('currentTime: ', (Number(moment()) / 1000));
+    // console.log('previousModuleUnlockTime - currentTime: ', previousModuleUnlockTime - (Number(moment()) / 1000));
   }
   componentDidMount() {
     this.intervalID = setInterval(() => this.tick(), 1000);
@@ -30,9 +30,9 @@ export class Module extends React.Component {
     const previousModuleUnlockTime = (
       typeof this.props.modules[Number(this.props.number) - 2] === 'undefined'
       ) ? 0 : (this.props.modules[Number(this.props.number) - 2].moduleComplete / 1000);
-      console.log('previousModuleUnlockTime: ', Math.trunc(previousModuleUnlockTime));
-      console.log('current Time: ', Math.trunc((Number(moment()) / 1000)));
-      console.log('weekFromNow: ', Math.trunc(previousModuleUnlockTime + 604800));
+      // console.log('previousModuleUnlockTime: ', Math.trunc(previousModuleUnlockTime));
+      // console.log('current Time: ', Math.trunc((Number(moment()) / 1000)));
+      // console.log('weekFromNow: ', Math.trunc(previousModuleUnlockTime + 604800));
     this.setState({
       unlock: Math.trunc((previousModuleUnlockTime + 604800) - (Number(moment()) / 1000))
     });
@@ -49,7 +49,7 @@ export class Module extends React.Component {
           </Link>
         </div>
       );
-    } else if(previousModuleUnlockTime  > 0) {
+    } else if(previousModuleUnlockTime > 0) {
       return (
         <div className='content-container'>
           <div className='module module__inactive'>

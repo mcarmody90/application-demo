@@ -30,13 +30,54 @@ export const startSetModules = () => {
   return (dispatch, getState) => {
     const uid = getState().auth.uid;
     return database.ref(`users/${uid}/modules`).once('value').then((snapshot) => {
-      const modules = [];
+      let modules = [
+        {
+          number: 1,
+          moduleComplete: 0
+        },
+        {
+          number: 2,
+          moduleComplete: 0
+        },
+        {
+          number: 3,
+          moduleComplete: 0
+        },
+        {
+          number: 4,
+          moduleComplete: 0
+        },
+        {
+          number: 5,
+          moduleComplete: 0
+        },
+        {
+          number: 6,
+          moduleComplete: 0
+        },
+        {
+          number: 7,
+          moduleComplete: 0
+        },
+        {
+          number: 8,
+          moduleComplete: 0
+        },
+        {
+          number: 9,
+          moduleComplete: 0
+        },
+        {
+          number: 10,
+          moduleComplete: 0
+        }
+      ];
       
       snapshot.forEach((childSnapshot) => {
-        modules.push({
-          number: childSnapshot.key,
-          moduleComplete: childSnapshot.val()
-        });
+        let objIndex = modules.findIndex((obj => obj.number == childSnapshot.key));
+        console.log('Before update: ', modules[objIndex]);
+        modules[objIndex].moduleComplete = childSnapshot.val();
+        console.log('After update: ', modules[objIndex]);
       });
       
       dispatch(setModules(modules));
