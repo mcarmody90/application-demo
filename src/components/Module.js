@@ -10,7 +10,7 @@ export class Module extends React.Component {
       typeof props.modules[Number(props.number) - 2] === 'undefined'
       ) ? 0 : (props.modules[Number(props.number) - 2].moduleComplete / 1000);
     this.state = {
-      unlock: Math.trunc((previousModuleUnlockTime + 604800) - (Number(moment()) / 1000))
+      unlock: Math.trunc((previousModuleUnlockTime + 20) - (Number(moment()) / 1000))
     };
     // console.log('props from Module component: ', this.props);
     // console.log('current module number: ', Number(this.props.number));
@@ -34,14 +34,14 @@ export class Module extends React.Component {
       // console.log('current Time: ', Math.trunc((Number(moment()) / 1000)));
       // console.log('weekFromNow: ', Math.trunc(previousModuleUnlockTime + 604800));
     this.setState({
-      unlock: Math.trunc((previousModuleUnlockTime + 604800) - (Number(moment()) / 1000))
+      unlock: Math.trunc((previousModuleUnlockTime + 20) - (Number(moment()) / 1000))
     });
   }
   render() {
     const previousModuleUnlockTime = (
       typeof this.props.modules[Number(this.props.number) - 2] === 'undefined'
       ) ? 0 : (this.props.modules[Number(this.props.number) - 2].moduleComplete / 1000);
-    if( (previousModuleUnlockTime + 604800) <= Math.trunc(Number(moment())/1000) && (previousModuleUnlockTime !== 0) || Number(this.props.number) === 1) {
+    if( (previousModuleUnlockTime + 20) <= Math.trunc(Number(moment())/1000) && (previousModuleUnlockTime !== 0) || Number(this.props.number) === 1) {
       return (
         <div className='content-container'>
           <Link className='module' to={`/module/${this.props.number}`}>

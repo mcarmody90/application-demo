@@ -3,19 +3,23 @@ import database from '../firebase/firebase';
 import moment from 'moment';
 
 // COMPLETE_MODULE
-export const completeModule = ({ moduleNumber }) => ({
-  type: 'COMPLETE_MODULE',
-  moduleNumber,
-  moduleComplete: Number(moment())
-});
+export const completeModule = (module = {}) => {
+  console.log('module in completeModule action: ', module);
+  return ({
+    type: 'COMPLETE_MODULE',
+    module
+  });
+};
 
-export const startCompleteModule = (moduleNumber = undefined) => {
+export const startCompleteModule = (module) => {
   return (dispatch, getState) => {
     const uid = getState().auth.uid;
     const currentTime = Number(moment());
+    const moduleNumber = Number(module);
     return database.ref(`users/${uid}/modules/${moduleNumber}`).set(currentTime).then((ref) => {
       dispatch(completeModule({
-        moduleNumber,
+        number: moduleNumber,
+        moduleComplete: currentTime
       }));
     });
   };
