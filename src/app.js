@@ -14,7 +14,7 @@ import LoadingPage from './components/LoadingPage';
 const store = configureStore();
 
 store.subscribe(() => {
-  console.log('state: ', store.getState());
+  console.log('state subscription from app.js: ', store.getState());
 });
 
 const jsx = (

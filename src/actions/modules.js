@@ -35,7 +35,7 @@ export const startSetModules = () => {
       snapshot.forEach((childSnapshot) => {
         modules.push({
           number: childSnapshot.key,
-          ...childSnapshot.val()
+          moduleComplete: childSnapshot.val()
         });
       });
       
