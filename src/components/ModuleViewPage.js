@@ -23,7 +23,7 @@ export class ModuleViewPage extends React.Component {
     console.log('previousModuleUnlockTime + waitTime: ', Number(previousModuleUnlockTime + waitTime));
     console.log('currentTime: ', currentTime);
     //(this.props.modules[Number(this.props.match.params.id) - 2].moduleComplete + 20000) >= Number(moment())
-    if ((Number(previousModuleUnlockTime + waitTime) <= currentTime) || Number(this.props.match.params.id) === 1) {
+    if (((Number(previousModuleUnlockTime + waitTime) <= currentTime ) && previousModuleUnlockTime > 0) || Number(this.props.match.params.id) === 1) {
       return (
         <div>
           <div className='page-header'>
