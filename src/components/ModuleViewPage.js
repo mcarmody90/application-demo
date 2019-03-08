@@ -15,11 +15,15 @@ export class ModuleViewPage extends React.Component {
   render () {
     const previousModuleUnlockTime = (
       typeof this.props.modules[Number(this.props.match.params.id) - 2] === 'undefined'
-      ) ? 0 : (this.props.modules[Number(this.props.match.params.id) - 2].moduleComplete);
-    const waitTime = 20;
-    const currentTime = Number(moment()) / 1000;
+      ) ? 0 : Math.trunc(this.props.modules[Number(this.props.match.params.id) - 2].moduleComplete);
+    const waitTime = 20000;
+    const currentTime = Math.trunc(Number(moment()));
+    console.log('previousModuleUnlockTime: ', previousModuleUnlockTime);
+    console.log('waitTime: ', waitTime);
+    console.log('previousModuleUnlockTime + waitTime: ', Number(previousModuleUnlockTime + waitTime));
+    console.log('currentTime: ', currentTime);
     //(this.props.modules[Number(this.props.match.params.id) - 2].moduleComplete + 20000) >= Number(moment())
-    if ((previousModuleUnlockTime + waitTime >= currentTime) || Number(this.props.match.params.id) === 1) {
+    if ((Number(previousModuleUnlockTime + waitTime) <= currentTime) || Number(this.props.match.params.id) === 1) {
       return (
         <div>
           <div className='page-header'>
