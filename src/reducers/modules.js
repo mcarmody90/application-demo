@@ -6,8 +6,8 @@ export default (state = modulesReducersDefaultState, action) => {
       return action.modules;
     case 'COMPLETE_MODULE':
         return state.map((module) => {
-          console.log('state module: ', module);
-          console.log('action module: ', action.module);
+          // console.log('state module: ', module);
+          // console.log('action module: ', action.module);
           if(module.number === action.module.number) {
             return {
               ...module,

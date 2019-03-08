@@ -79,9 +79,9 @@ export const startSetModules = () => {
       
       snapshot.forEach((childSnapshot) => {
         let objIndex = modules.findIndex((obj => obj.number == childSnapshot.key));
-        console.log('Before update: ', modules[objIndex]);
+        // console.log('Before update: ', modules[objIndex]);
         modules[objIndex].moduleComplete = childSnapshot.val();
-        console.log('After update: ', modules[objIndex]);
+        // console.log('After update: ', modules[objIndex]);
       });
       
       dispatch(setModules(modules));
