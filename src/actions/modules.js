@@ -4,7 +4,6 @@ import moment from 'moment';
 
 // COMPLETE_MODULE
 export const completeModule = (module = {}) => {
-  console.log('module in completeModule action: ', module);
   return ({
     type: 'COMPLETE_MODULE',
     module
@@ -79,25 +78,10 @@ export const startSetModules = () => {
       
       snapshot.forEach((childSnapshot) => {
         let objIndex = modules.findIndex((obj => obj.number == childSnapshot.key));
-        // console.log('Before update: ', modules[objIndex]);
         modules[objIndex].moduleComplete = childSnapshot.val();
-        // console.log('After update: ', modules[objIndex]);
       });
       
       dispatch(setModules(modules));
     });
   };
 };
-
-// export const startCompleteModule = (moduleNumber = undefined) => {
-//   console.log('moduleNumber: ', moduleNumber);
-//   return (dispatch, getState) => {
-//     const uid = getState().auth.uid;
-//     const currentTime = moment();
-//     // const moduleNumber = 1;
-//     // const module = { moduleNumber };
-//     return database.ref(`users/1337/moduleComplete/${moduleNumber}/40`).push(module).then((ref) => {
-//       dispatch(completeModule(moduleNumber));
-//     });
-//   };
-// };

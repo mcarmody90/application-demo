@@ -8,21 +8,15 @@ export class ModuleViewPage extends React.Component {
   onClick = (modules) => {
     this.props.startCompleteModule(this.props.match.params.id);
     this.props.history.push('/dashboard');
-    // console.log('previous Module unlockTime: ', Math.trunc((this.props.modules[Number(this.props.match.params.id) - 2].moduleComplete) / 1000));
-    // console.log('one week from previous module unlock', Math.trunc((this.props.modules[Number(this.props.match.params.id) - 2].moduleComplete) / 1000) + 604800);
-    // console.log('current time: ', Math.trunc(Number( moment() ) / 1000));
   };
+  onClickBack = () => { this.props.history.push('/dashboard'); }
   render () {
     const previousModuleUnlockTime = (
       typeof this.props.modules[Number(this.props.match.params.id) - 2] === 'undefined'
-      ) ? 0 : Math.trunc(this.props.modules[Number(this.props.match.params.id) - 2].moduleComplete);
-    const waitTime = 20000;
-    const currentTime = Math.trunc(Number(moment()));
-    console.log('previousModuleUnlockTime: ', previousModuleUnlockTime);
-    console.log('waitTime: ', waitTime);
-    console.log('previousModuleUnlockTime + waitTime: ', Number(previousModuleUnlockTime + waitTime));
-    console.log('currentTime: ', currentTime);
-    //(this.props.modules[Number(this.props.match.params.id) - 2].moduleComplete + 20000) >= Number(moment())
+      ) ? 0 : Math.trunc(this.props.modules[Number(this.props.match.params.id) - 2].moduleComplete / 1000);
+    const waitTime = 29;
+    const currentTime = Math.trunc(Number(moment()) / 1000);
+    // if module is unlocked display the page
     if (((Number(previousModuleUnlockTime + waitTime) <= currentTime ) && previousModuleUnlockTime > 0) || Number(this.props.match.params.id) === 1) {
       return (
         <div>
@@ -32,10 +26,19 @@ export class ModuleViewPage extends React.Component {
             </div>
           </div>
           <div className='content-container'>
-            <button className='button button--secondary' onClick={this.onClick}>Complete Module</button>
+            <div className='content-container--button'>
+              {
+                this.props.modules[Number(this.props.match.params.id) - 1].moduleComplete > 0 ? (
+                  <button className='button button--secondary' onClick={this.onClickBack}>Back to Dashboard</button>
+                ) :(
+                  <button className='button' onClick={this.onClick}>Complete Module</button>
+                )
+              }
+            </div>
           </div>
         </div>
       );
+    // if module is not unlocked return 404 page - prevents manual URL workaround
     } else {
       return (
         <NotFoundPage />
@@ -55,3 +58,5 @@ const mapDispatchToProps = (dispatch, props) => ({
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ModuleViewPage);
+
+// <iframe src="https://uhcl.co1.qualtrics.com/jfe/form/SV_6G21pFXH5vrRNNH" height="800px" width="100%"></iframe>

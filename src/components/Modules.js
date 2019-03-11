@@ -1,20 +1,3 @@
-// import React from 'react';
-// import Module from './Module';
-// import modules from '../fixtures/modules';
-// import user from '../fixtures/user';
-
-// const Modules = () => (
-//   <div className='module-list'>
-//     {
-//       modules.map((module) => (
-//         <Module key={module.number} {...module} {...user} />
-//       ))
-//     }
-//   </div>
-// );
-
-// export default Modules;
-
 import React from 'react';
 import { connect } from 'react-redux';
 import Module from './Module';

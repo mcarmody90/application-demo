@@ -16,7 +16,21 @@
   width: 25rem;
 }
 
+.box-layout__box--error {
+  height: 100vh;
+  margin: 0 auto;
+  width: 100vw;
+  h1 {
+    font-size: 15rem;
+    margin: $l-size 0 0 0;
+  }
+  p {
+    font-size: 3rem;
+    margin-top: 0;
+  }
+}
+
 .box-layout__title {
-  margin: 0 0 $m-size 0;
   line-height: 1;
+  margin: 0 0 $m-size 0;
 }

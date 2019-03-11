@@ -13,10 +13,6 @@ import LoadingPage from './components/LoadingPage';
 
 const store = configureStore();
 
-store.subscribe(() => {
-  console.log('state subscription from app.js: ', store.getState());
-});
-
 const jsx = (
   <Provider store={store}>
     <AppRouter />
@@ -36,7 +32,6 @@ firebase.auth().onAuthStateChanged((user) => {
   if (user) {
     store.dispatch(login(user.uid));
     store.dispatch(startSetModules()).then(() => {
-      console.log('uid', user.uid);
       renderApp();
       if (history.location.pathname === '/') {
         history.push('/dashboard');
